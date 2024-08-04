@@ -68,7 +68,7 @@
         const currentTime = new Date();
         const stopTime = new Date(currentTime.getTime() + 18 * 60000);
         const stopTimeStr = formatMilitaryTime(stopTime);
-        document.getElementById('result').innerText = The stop time is: ${stopTimeStr};
+        document.getElementById('result').innerText = `The stop time is: ${stopTimeStr}`;
     }
 
     function formatMilitaryTime(date) {
