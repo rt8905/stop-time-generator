@@ -57,7 +57,7 @@
 <body>
 
 <div class="container">
-    <img src="image.png/image.png" alt="CEMEX Logo">
+    <img src="image.png" alt="CEMEX Logo">
     <h1>Stop Time Generator</h1>
     <button onclick="generateStopTime()">Generate Stop Time</button>
     <div id="result"></div>
@@ -68,7 +68,7 @@
         const currentTime = new Date();
         const stopTime = new Date(currentTime.getTime() + 18 * 60000);
         const stopTimeStr = formatMilitaryTime(stopTime);
-        document.getElementById('result').innerText = `The stop time is: ${stopTimeStr}`;
+        document.getElementById('result').innerHTML = `The stop time is: <strong>${stopTimeStr}</strong>`;
     }
 
     function formatMilitaryTime(date) {
