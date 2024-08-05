@@ -43,6 +43,7 @@
             color: white;
             border-radius: 6px;
             transition: background-color 0.3s;
+            margin: 5px;
         }
         button:hover {
             background-color: #1d3557; /* Darker blue */
@@ -55,30 +56,41 @@
     </style>
 </head>
 <body>
+    <div class="container">
+        <img src="image.png" alt="CEMEX Logo">
+        <h1>Stop Time Generator</h1>
+        <button onclick="generateStopTime()">Generate Stop Time</button>
+        <div id="result"></div>
+        <div id="options" style="display:none;">
+            <button onclick="addMinutes(5)">Add 5 minutes</button>
+            <button onclick="addMinutes(10)">Add 10 minutes</button>
+            <button onclick="addMinutes(15)">Add 15 minutes</button>
+        </div>
+    </div>
+    <script>
+        let stopTime;
 
-<div class="container">
-    <img src="image.png/image.png" alt="CEMEX Logo">
-    <h1>Stop Time Generator</h1>
-    <button onclick="generateStopTime()">Generate Stop Time</button>
-    <div id="result"></div>
-</div>
+        function generateStopTime() {
+            const currentTime = new Date();
+            stopTime = new Date(currentTime.getTime() + 18 * 60000);
+            const stopTimeStr = formatMilitaryTime(stopTime);
+            document.getElementById('result').innerText = `The stop time is: ${stopTimeStr}`;
+            document.getElementById('options').style.display = 'block';
+        }
 
-<script>
-    function generateStopTime() {
-        const currentTime = new Date();
-        const stopTime = new Date(currentTime.getTime() + 18 * 60000);
-        const stopTimeStr = formatMilitaryTime(stopTime);
-        document.getElementById('result').innerText = `The stop time is: ${stopTimeStr}`;
-    }
+        function addMinutes(minutes) {
+            stopTime = new Date(stopTime.getTime() + minutes * 60000);
+            const stopTimeStr = formatMilitaryTime(stopTime);
+            document.getElementById('result').innerText = `The new stop time is: ${stopTimeStr}`;
+        }
 
-    function formatMilitaryTime(date) {
-        let hours = date.getHours();
-        let minutes = date.getMinutes();
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-        const strTime = hours + ':' + minutes;
-        return date.toLocaleDateString() + ' ' + strTime;
-    }
-</script>
-
+        function formatMilitaryTime(date) {
+            let hours = date.getHours();
+            let minutes = date.getMinutes();
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            const strTime = hours + ':' + minutes;
+            return date.toLocaleDateString() + ' ' + strTime;
+        }
+    </script>
 </body>
 </html>
